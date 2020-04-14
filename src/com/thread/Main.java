@@ -1,8 +1,10 @@
 package com.thread;
 
-public class Main {
+import java.io.*;
 
-    public static void main(String[] args) {
-	// write your code here
-    }
+public class Main implements Serializable {
+	public static void main(String[] args) throws FileNotFoundException {
+		File file = new File("Demo.txt");
+
+	}
 }
