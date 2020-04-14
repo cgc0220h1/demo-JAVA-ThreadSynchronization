@@ -10,8 +10,8 @@ public class Main {
         RacingCars dream = new RacingCars("Dream Thái");
 
         Thread car1 = new Thread(ferrari);
-        Thread car2 = new Thread(wave);
-        Thread car3 = new Thread(dream);
+        Thread car2 = new Thread(ferrari);
+        Thread car3 = new Thread(ferrari);
 
         System.out.println("Đích: " + FINISH_LINE + " Km");
         car1.start();
