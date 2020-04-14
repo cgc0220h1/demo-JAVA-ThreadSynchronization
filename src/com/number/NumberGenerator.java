@@ -6,7 +6,7 @@ public class NumberGenerator implements Runnable {
         System.out.println(Thread.currentThread().getName()
                 + " bắt đầu với Priority là: "
                 + Thread.currentThread().getPriority());
-        for (int index = 0; index <= 10000; index++) {
+        for (int index = 0; index <= 10; index++) {
             System.out.println(index
                     + " - hashCode: " + hashCode()
                     + " - Thread: " + Thread.currentThread().getName()
@@ -27,8 +27,10 @@ public class NumberGenerator implements Runnable {
             thread1.setPriority(Thread.MAX_PRIORITY);
             thread2.setPriority(Thread.MIN_PRIORITY);
 
+            long startTime = System.currentTimeMillis();
             thread2.start();
             thread1.start();
+            System.out.println("Task Finished in: " + (System.currentTimeMillis() - startTime));
             try {
                 thread2.join();
                 thread1.join();
