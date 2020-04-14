@@ -38,7 +38,7 @@ public class NumberGenerator implements Runnable {
         }
     }
 
-    public static class OddEvenGenerator {
+    public static class OddEvenMultiProcess {
         public static void main(String[] args) {
             Thread oddThread = new Thread() {
                 @Override
@@ -76,6 +76,60 @@ public class NumberGenerator implements Runnable {
                 e.printStackTrace();
             }
             evenTread.start();
+        }
+    }
+
+    public static class OddEvenSynchronizedMultiThread {
+        private int index = 0;
+
+        synchronized public void findNumber(int number) throws InterruptedException {
+            while (index <= number) {
+                if (index % 2 != 0) {
+                    System.out.println(Thread.currentThread().getName()
+                            + " - OddNumber: "
+                            + index);
+                } else {
+                    System.out.println(Thread.currentThread().getName()
+                            + " - EvenNumber: "
+                            + index);
+                }
+                index++;
+                Thread.sleep(1000);
+                notify();
+                if (index <= number) {
+                    wait();
+                } else {
+                    Thread.currentThread().checkAccess();
+                }
+            }
+        }
+
+        public static void main(String[] args) {
+            OddEvenSynchronizedMultiThread generator = new OddEvenSynchronizedMultiThread();
+            Thread thread1 = new Thread() {
+                @Override
+                public void run() {
+                    try {
+                        generator.findNumber(10);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            };
+
+            Thread thread2 = new Thread() {
+                @Override
+                public void run() {
+                    try {
+                        generator.findNumber(10);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            };
+
+            thread1.start();
+            thread2.start();
         }
     }
 }

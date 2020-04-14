@@ -13,8 +13,8 @@ public class Bank {
             while (balance < amount) {
                 System.out.println("Không đủ tiền rút!!");
                 try {
-//                    wait();
-                } catch (InputMismatchException ie) {
+                    wait();
+                } catch (InputMismatchException | InterruptedException ie) {
                     System.out.println(ie.toString());
                 }
             }
@@ -24,7 +24,7 @@ public class Bank {
             System.out.println("Đang thực hiện giao dịch nạp tiền " + amount);
             balance += amount;
             System.out.println("Nạp tiền thành công. Tài khoản của bạn hiện tại là " + balance);
-//            notify();
+            notify();
         }
     }
 
@@ -44,7 +44,7 @@ public class Bank {
             public void run() {
                 customer.deposit(500);
                 try {
-                    Thread.sleep(2000);
+                    Thread.sleep(3000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
