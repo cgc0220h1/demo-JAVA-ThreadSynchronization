@@ -1,4 +1,4 @@
-package com.generator;
+package com.number;
 
 public class NumberGenerator implements Runnable {
     @Override
@@ -107,6 +107,7 @@ public class NumberGenerator implements Runnable {
         public static void main(String[] args) {
             OddEvenSynchronizedMultiThread generator = new OddEvenSynchronizedMultiThread();
             Thread thread1 = new Thread() {
+
                 @Override
                 public void run() {
                     try {
@@ -118,6 +119,7 @@ public class NumberGenerator implements Runnable {
             };
 
             Thread thread2 = new Thread() {
+
                 @Override
                 public void run() {
                     try {
